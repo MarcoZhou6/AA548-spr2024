@@ -9,9 +9,9 @@ Probability is the mathematical framework for quantifying uncertainty and random
 ### Recursive Bayesian Filter overview
 The Recursive Bayesian Filter builds on the principles of probability and Bayes' theorem. It is a powerful method for continuously updating the probability distribution of a system's state or parameters as new data becomes available. Unlike traditional batch processing methods, the recursive Bayesian filter updates beliefs incrementally, making it particularly suitable for real-time applications. This approach is crucial in dynamic systems where conditions change over time, necessitating continuous estimation.   
 ### Relationship
-The relationship between probability and the recursive Bayesian filter is fundamentally rooted in Bayes' theorem, which provides a mechanism for updating the probability of a hypothesis based on new evidence. Bayes' theorem states that the posterior probability, the updated probability after considering new data, is proportional to the product of the prior probability and the likelihood of the observed data. This iterative updating process is the core of the recursive Bayesian filter.
+The relationship between probability and the recursive Bayesian filter is fundamentally rooted in Bayes theorem, which provides a mechanism for updating the probability of a hypothesis based on new evidence. Bayes theorem states that the posterior probability, the updated probability after considering new data, is proportional to the product of the prior probability and the likelihood of the observed data. This iterative updating process is the core of the recursive Bayesian filter.
 
-The Recursive Bayesian Filter operates by applying Bayes' theorem in a recursive manner. Initially, a prior distribution represents the initial belief about the state or parameters of the system. As new data points are observed, the prior distribution is updated to a posterior distribution using the likelihood of the new data. This posterior distribution then becomes the new prior for the next iteration. This recursive process allows for continuous refinement of the estimates, making the approach highly adaptive and responsive to new information.
+The Recursive Bayesian Filter operates by applying Bayes theorem in a recursive manner. Initially, a prior distribution represents the initial belief about the state or parameters of the system. As new data points are observed, the prior distribution is updated to a posterior distribution using the likelihood of the new data. This posterior distribution then becomes the new prior for the next iteration. This recursive process allows for continuous refinement of the estimates, making the approach highly adaptive and responsive to new information.
 ## Preliminaries
 First, we'll review the variables and space of probability and what each of them means.
 ### Random variables
@@ -196,7 +196,7 @@ $$
 $$
 
 ## Conclusion
-The Recursive Bayesian Filter can utilize Bayes' theorem to update the probability distribution of the system state when new data is observed, continuously refining the estimates. Supported by the theorem of total probability and Bayes rule, this method enhances the actual state estimation capabilities in dynamic environments.
+The Recursive Bayesian Filter can utilize Bayes theorem to update the probability distribution of the system state when new data is observed, continuously refining the estimates. Supported by the theorem of total probability and Bayes rule, this method enhances the actual state estimation capabilities in dynamic environments.
 
 The probability principles and recursive Bayesian filtering techniques provides a powerful and efficient framework for real-time dynamic system estimation. This synergy enables continuous and adaptive decision-making and prediction, leveraging evolving data to refine estimates and improve accuracy over time.
 
