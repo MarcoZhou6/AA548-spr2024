@@ -135,7 +135,8 @@ $$
 $$
 \propto P(y_k | x_k) \cdot P(x_k | y_{1:k-1})
 $$
-- ![Markov chain](pdf.jpg) （The $z$ here should be the $y$ in the formula）
+- ![Markov chain](figs/pdf.jpg)
+（The $z$ here should be the $y$ in the formula）
 ### Recursive Bayesian Filter for Gaussian Random Variables
 If  $X$ and $Y$ are Gaussian random variables, then $X \bot Y$ & $Y \bot X$ are also Gaussian random variables.
 
