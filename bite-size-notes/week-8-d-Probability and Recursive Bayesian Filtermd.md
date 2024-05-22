@@ -25,9 +25,9 @@ And back to the function：
 
 The characteristic of continuous space is that random variables can take continuous values. Assume that all continuous random variables in this text have a probability density function (PDF). The common density function is the one-dimensional normal distribution (normal distribution) with mean $\mu$ and variance $\sigma^2$. The probability density function of the normal distribution can be given by the Gaussian function:
 
-\[ 
+$$
 p(x) = (2\pi\sigma^2)^{-\frac{1}{2}} \exp \left( -\frac{1}{2} \frac{(x - \mu)^2}{\sigma^2} \right) \tag{1} 
-\]
+$$
 
 This can be abbreviated as $N(x; \mu, \sigma^2)$.
 
