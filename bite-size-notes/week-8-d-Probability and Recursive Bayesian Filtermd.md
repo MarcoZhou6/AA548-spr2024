@@ -1,6 +1,7 @@
 # Probability and Recursive Bayesian Filter
 ##  objectives
 1.Probability review
+
 2.Understanding and mastering the fundamentals and applications of Recursive Bayesian Filter
 ## Introduction 
 ### Probability overview
@@ -15,10 +16,13 @@ The Recursive Bayesian Filter operates by applying Bayes' theorem in a recursive
 First, we'll review the variables and space of probability and what each of them means.
 ### Random variables
 $\mathbf{X}$: A quantity whose value is unknown/uncertain to us.
+
 $\mathbf{x}$: A possible value of $\mathbf{X}$, or sample of $\mathbf{X}$, or realization of $\mathbf{X}$.
 ### Probability space (Ω，F，P)
 Ω: Sample space ( all possible outcomes of random variable ).
+
 F: Event space( all possible sets of outcomes in Ω ).
+
 P: Probability measure (assigns probability to each event ).
 ### Basis of probability
 And back to the function：
@@ -34,8 +38,9 @@ This can be abbreviated as $N(x; \mu, \sigma^2)$.
 Equation (1) assumes that $x$ is a scalar quantity, but $x$ is often a multi-dimensional vector. The normal distribution of vectors is called multivariate. The density function of the multivariate normal distribution is:
 
 $$
-p(x) = \det(2\pi\Sigma)^{-\frac{1}{2}} \exp \left\{ -\frac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) \right\} \tag{2}
+p(x) = \det(2\pi\Sigma)^{-\frac{1}{2}} \exp \left( -\frac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) \right) \tag{2}
 $$
+
 
 where $\mu$ is the mean vector, $\Sigma$ is a positive semidefinite and symmetric matrix called the covariance matrix; $T$ denotes the transpose of the vector.
 
@@ -81,7 +86,7 @@ $$
 p(x) = \int p(x|y)p(y)dy \tag{9} \quad 
 $$
 ### Bayes Rule
-Bayes' Rule links the conditional probability$p(x|y) $ with the "reverse" probability $ p(y|x) $, requiring $ p(y) > 0 $:
+Bayes' Rule links the conditional probability $p(x|y)$ with the "reverse" probability $p(y|x)$, requiring $p(y) > 0$:
 #### discrete case：
 $$
 p(x|y) = \frac{p(y|x)p(x)}{p(y)} = \frac{p(y|x)p(x)}{\sum_{x'} p(y|x')p(x')} \tag{10} \quad 
@@ -91,76 +96,105 @@ $$
 p(x|y) = \frac{p(y|x)p(x)}{p(y)} = \frac{p(y|x)p(x)}{\int p(y|x')p(x')dx'} \tag{11} \quad 
 $$
 
-If $x $ is a value inferred from $ y $, the probability $ p(x) $ is called the prior probability distribution. Here, $ y $ is referred to as data, which could also be sensor measurements. The distribution $p(x) $summarizes all prior information about$ x $ before observing $ y$. The probability $ p(x|y) $ is known as the posterior probability distribution. As shown in equations (10) and (11), Bayes' rule provides a convenient method to calculate the posterior probability$p(x|y) $by using the reverse conditional probability $ p(y|x) $ and the prior probability $p(x) $.
+If $x$ is a value inferred from $y$, the probability $p(x)$ is called the prior probability distribution. Here, $y$ is referred to as data, which could also be sensor measurements. The distribution $p(x)$ summarizes all prior information about $x$ before observing $y$. The probability $p(x|y)$ is known as the posterior probability distribution. As shown in equations (10) and (11), Bayes rule provides a convenient method to calculate the posterior probability $p(x|y)$ by using the reverse conditional probability $p(y|x)$ and the prior probability $p(x)$.
 
 ## Main body
 ### Recursive Bayesian Filter
-- Predict $$
+- Predict
+
+$$
 P(x_k | y_{1:k-1}) = \int_{x_{k-1}}P(x_k | x_{k-1}) \cdot P(x_{k-1} | y_{1:k-1})d x_{k-1}
 $$
+
 $$
 P(x_k, x_{k-1} | y_{1:k-1}) = P(x_k | x_{k-1}, y_{1:k-1}) \cdot P(x_{k-1} | y_{1:k-1})
 $$
+
 $$
 =P(x_k, x_{k-1}) \cdot P(x_{k-1} | y_{1:k-1})
 $$
+
 $$
 P(x_k | y_{1:k-1}) = \int_{x_{k-1}}P(x_k , x_{k-1}| y_{1:k-1}) dx_{k-1}
 $$
-- Update $$
+
+- Update
+
+$$
 P(x_k | y_{1:k}) \propto P(y_k | x_k) \cdot P(x_k | y_{1:k-1}) 
 $$
+
 $$
 P(x_k | y_{1:k}) = P(x_k | y_k, y_{1:k-1}) 
 $$
+
 $$
 \propto P(y_k | x_k, y_{1:k-1}) \cdot P(x_k | y_{1:k-1}) 
 $$
+
 $$
 \propto P(y_k | x_k) \cdot P(x_k | y_{1:k-1})
 $$
-- ![Markov chain](pdf.jpg)
-  （The $z$ here should be the $y$ in the formula）
+- ![Markov chain](pdf.jpg) （The $z$ here should be the $y$ in the formula）
 ### Recursive Bayesian Filter for Gaussian Random Variables
 If  $X$ and $Y$ are Gaussian random variables, then $X \bot Y$ & $Y \bot X$ are also Gaussian random variables.
+
 $$
 P(x) = N( \mu_x, \sum_x )
 $$
+
 $$
 P(y) = N( \mu_y, \sum_y )
 $$
+
 $$
 \sum_{xy} = Cov(X,Y) , \sum_{xy} = {\sum_{yx}}^T
 $$
-then $$
+
+then 
+
+$$
 p(x|y) = N(\mu_{x|y},\sum_{x|y})
 $$
-where $$
+
+where 
+
+$$
 \mu_{x|y} = \mu_x + \sum_{xy} \cdot {\sum_{y}}^{-1}(y - \mu_y)
 $$
+
 $$
-    \sum_{x|y} = \sum_{x} - \sum_{xy} \cdot {\sum_{y}}^{-1} \cdot \sum_{yx}
+\sum_{x|y} = \sum_{x} - \sum_{xy} \cdot {\sum_{y}}^{-1} \cdot \sum_{yx}
 $$
+
 Let's look at $\mu_y$,
+
 $$
-\mu_y = E[Y]\\ = E[CX+V]\\=C \cdot E[X] + E[V]\\=C\cdot \mu_x
+\mu_y = E[Y]\\ = E[CX+V]\=C \cdot E[X] + E[V]\=C\cdot \mu_x
 $$
+
 $$
-\sum_{y} = Cov(Y)\\=E[(Y- \mu_y)(Y-\mu_y)^T]\\=C \cdot \sum_{x} \cdot C^T+R
+\sum_{y} = Cov(Y)\=E[(Y- \mu_y)(Y-\mu_y)^T]\=C \cdot \sum_{x} \cdot C^T+R
 $$
+
 $$
- \sum_{x|y} = E[(X- \mu_x)(Y-\mu_y)^T]\\  =  \sum_{x} \cdot C^T
+ \sum_{x|y} = E[(X- \mu_x)(Y-\mu_y)^T]\  =  \sum_{x} \cdot C^T
 $$
+
 $$
   \sum_{y|x} = C \sum_{x}
 $$
+
 Now, we need to plug all back:
+
 $$
    \mu_{x_k|y_{1-k}} = \mu_x + \sum_{x} \cdot C^T (C \cdot \sum_{x} \cdot C^T+R)^{-1}  (y_k-C \mu_x)
 $$
+
 $$
  \sum_{x|y} = \sum_{x}-\sum_{x} \cdot C^T(C \cdot \sum_{x} \cdot C^T+R)^{-1}C \cdot \sum_{x} \\  =  (I - KC) \cdot   \sum_{x} 
 $$
+
 ## Conclusion
 The Recursive Bayesian Filter can utilize Bayes' theorem to update the probability distribution of the system state when new data is observed, continuously refining the estimates. Supported by the theorem of total probability and Bayes rule, this method enhances the actual state estimation capabilities in dynamic environments.
 
